@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\v1\LoginController;
+use App\Http\Controllers\API\v1\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Connect LoginController with its route
 Route::post('/v1/login', [LoginController::class, 'login']);
 Route::middleware('auth:api')->get('/v1/logout', [LoginController::class, 'logout']);
+
+//Connect RegistrationController with its route
+Route::post('/v1/regis', [RegistrationController::class, 'register']);

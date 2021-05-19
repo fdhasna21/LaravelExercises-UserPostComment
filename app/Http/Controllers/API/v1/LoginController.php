@@ -12,15 +12,15 @@ class LoginController extends Controller
 {
     public function login(Request $request){
         //Get email and password from front end using Request Http
-        $in_email = $request->email;
-        $in_password = $request->password;
+        $email = $request->email;
+        $password = $request->password;
 
         //Get a record from Users table using User Model based on $in_email
         //this command equivalent with-> SELECT * FROM User WHERE 'email' = $in_email
         //Using first() for 1 data (by default it'll return first/last data depend on order type), get() for many datas
-        $user = User::where('email', '=' , $in_email)->first();
+        $user = User::where('email', '=' , $email)->first();
         if($user != null){
-            if(Hash::check($in_password, $user->password)){
+            if(Hash::check($password, $user->password)){
                 //$in_password match, so update api_token and save it into database
                 $user->api_token = Str::random(60);
                 $user->save();
